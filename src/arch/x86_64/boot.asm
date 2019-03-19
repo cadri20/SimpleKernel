@@ -10,6 +10,9 @@ start:
 	call check_cpuid
 	call check_long_mode
 
+	call setup_page_tables
+	call enable_paging
+
     ; print `OK`
 	mov dword [0xb8000], 0x2f4b2f4f
 	hlt
@@ -68,7 +71,60 @@ check_long_mode:
 	mov al, "2"
 	jmp error
 
+setup_page_tables:
+	mov eax, pdp_table
+	or eax, 0b11 	; present + writeable
+	mov [pml4_table], eax
+
+	mov eax, pd_table
+	or eax, 0b11
+	mov [pdp_table], eax
+
+	mov ecx, 0
+.map_pd_table:
+	mov eax, 0x200000
+	mul ecx
+
+	or eax, 0b10000011	; present + writeable + huge
+	mov [pd_table + ecx * 8], eax
+
+	inc ecx
+	cmp ecx, 512
+	jne .map_pd_table
+	
+	ret
+
+enable_paging:
+	mov eax, pml4_table
+	mov cr3, eax
+
+	; enable PAE
+	mov eax, cr4
+	or eax, 1 << 5
+	mov cr4, eax
+	
+	; set the long mode bit in the EFER MSR
+	mov ecx, 0xC0000080
+	rdmsr
+	or eax, 1 << 8
+	wrmsr
+
+	; enable paging
+	mov eax, cr0
+	or eax, 1 << 31
+	mov cr0, eax
+
+	ret
+
+
 section .bss
+align 4096
+pml4_table:
+    resb 4096
+pdp_table:
+    resb 4096
+pd_table:
+    resb 4096
 stack_bottom:
 	resb 64
 stack_top:

@@ -11,7 +11,7 @@ When I started I adhered to the following principles:
 * In start I support legacy only (like BIOS, non-gaming[3-buttons] mouse, 128-keybaord, etc)
 * (maybe smth else)
 
-## Version 1.1
+## Version 1.1.2
 
 Features
 ===
@@ -36,5 +36,10 @@ Features
 
 # Running:
 You can running this project with `qemu`. For this you can just run `make run`
+
+# Runtime erros:
+* 0 - Mulitboot error
+* 1 - CPUID error
+* 2 - Long Mode error
 
 ### This is new version from scratch. At this moment it's very stupid :)
