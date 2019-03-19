@@ -1,4 +1,15 @@
 # Simple kernel 
+
+<a href="https://github.com/AnyKeyShik/SimpleKernel/blob/master/LICENSE">
+<img src ="https://img.shields.io/github/license/AnyKeyShik/SimpleKernel.svg" />
+</a>
+<a href="https://github.com/AnyKeyShik/SimpleKernel/stargazers">
+<img src ="https://img.shields.io/github/stars/AnyKeyShik/SimpleKernel.svg" />
+</a>
+<a href="https://github.com/AnyKeyShik/SimpleKernel/network">
+<img src ="https://img.shields.io/github/forks/AnyKeyShik/SimpleKernel.svg" />
+</a>
+
 This is my first attempt to write something great (again :D)
 
 I want to learn how does OS work and this is main reason why I've started this project.
@@ -11,7 +22,23 @@ When I started I adhered to the following principles:
 * In start I support legacy only (like BIOS, non-gaming[3-buttons] mouse, 128-keybaord, etc)
 * (maybe smth else)
 
-## Version 1.1.2
+# Getting started
+
+#### Requirements
+
+To compile and run this project, you will need:
+* the NASM assembler
+* the GNU linker
+* a Linux x64 operating system
+
+#### Running the code
+
+Simply use the following commands in a terminal:
+```
+git clone https://github.com/AnyKeyShik/SimpleKernel.git
+cd SimpleKernel
+make run
+```
 
 Features
 ===

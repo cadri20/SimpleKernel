@@ -35,7 +35,6 @@ $(kernel): $(assembly_object_files) $(linker_script)
 	@echo "Linking object files..."
 	@ld -n -T $(linker_script) -o $(kernel) $(assembly_object_files)
 
-# compile assembly files
 build/arch/$(arch)/%.o: src/arch/$(arch)/%.asm
 	@mkdir -p $(shell dirname $@)
 	@echo "Compile $< part"
