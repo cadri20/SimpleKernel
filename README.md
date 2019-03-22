@@ -21,6 +21,7 @@ I want to learn how does OS work and this is main reason why I've started this p
 To compile and run this project, you will need:
 * the NASM assembler
 * the GNU linker
+* the GNU make
 * GRUB bootloader
 * a Linux x64 operating system
 
