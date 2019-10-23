@@ -1,0 +1,6 @@
+os: linux
+sudo: required
+
+before_install: sudo apt-get install nasm
+
+script: make all
