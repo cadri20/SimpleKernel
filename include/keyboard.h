@@ -6,6 +6,6 @@
 #include "keymap.h"
 
 void keyboard_init(void);
-void keyboard_handler_main(void);
+extern "C" void keyboard_handler_main(void);
 
 #endif

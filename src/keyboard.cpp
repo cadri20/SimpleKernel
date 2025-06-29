@@ -1,7 +1,7 @@
 #include "keyboard.h"
 
-extern void write_port(unsigned short port, unsigned char data);
-extern char read_port(unsigned short port);
+extern "C" void write_port(unsigned short port, unsigned char data);
+extern "C" char read_port(unsigned short port);
 extern unsigned char keyboard_map[128];
 
 void keyboard_init(void)
@@ -10,10 +10,12 @@ void keyboard_init(void)
 	write_port(0x21 , 0xFD);
 }
 
-void keyboard_handler_main(void)
+extern "C" void keyboard_handler_main(void)
 {
 	unsigned char status;
 	char keycode;
+
+	Screen screen;
 
 	// Write EOI
 	write_port(0x20, 0x20);
@@ -27,19 +29,19 @@ void keyboard_handler_main(void)
         }
 
 		if(keycode == ENTER_KEY_CODE) {
-			print_newline();
+			screen.printNewLine();
 			return;
 		}
         if(keycode == BACKSPACE_KEY_CODE) {
-            print_delete_symbol();
+            screen.printDeleteSymbol();
             return;
         }
         if(keycode == TAB_KEY_CODE) {
-            print_tab();
+            screen.printTab();
             return;
         }
 
         char input_str = keyboard_map[(unsigned char) keycode];
-        print_symbol(input_str);
+        screen.printSymbol(input_str);
 	}
 }

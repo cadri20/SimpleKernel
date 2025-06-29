@@ -7,7 +7,7 @@
 #
 
 # CC
-CC := gcc
+CC := g++
 NASM := nasm
 LNK := ld
 
@@ -23,7 +23,7 @@ EXECUTABLE := kernel
 TARGET := $(TARGETDIR)/$(EXECUTABLE)
 
 # Code lists
-SRCTEXT := c
+SRCTEXT := cpp
 ASMTEXT := asm
 LNKTEXT := ld
 SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCTEXT))

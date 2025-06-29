@@ -5,11 +5,23 @@
 
 extern unsigned int current_loc;
 
-void print_string(const char *string);
-void print_symbol(char symbol);
-void print_newline(void);
-void print_delete_symbol(void);
-void print_tab(void);
-void clear_screen(void);
+class Screen {
+public:
+
+    static const unsigned int VIDEO_MEMORY = 0xB8000;
+
+    Screen();
+
+    void printString(const char* str);
+    void printSymbol(char c);
+    void printNewLine();
+    void printDeleteSymbol();
+    void printTab();
+    void clearScreen();
+
+private:
+    unsigned char* vidptr;
+    unsigned int current_loc;
+};
 
 #endif

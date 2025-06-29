@@ -11,9 +11,9 @@ struct IDT_entry {
 
 struct IDT_entry IDT[IDT_SIZE];
 
-extern void keyboard_handler(void);
-extern void load_idt(unsigned long *idt_ptr);
-extern void write_port(unsigned short port, unsigned char data);
+extern "C" void keyboard_handler(void);
+extern "C" void load_idt(unsigned long *idt_ptr);
+extern "C" void write_port(unsigned short port, unsigned char data);
 
 void idt_init(void)
 {
