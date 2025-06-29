@@ -12,7 +12,9 @@
 #define IDT_SIZE 256
 #define INTERRUPT_GATE 0x8e
 #define KERNEL_CODE_SEGMENT_OFFSET 0x08
+#include "screen.h"
 
 extern char *vidptr;
+
 
 #endif

@@ -27,18 +27,18 @@ SRCTEXT := cpp
 ASMTEXT := asm
 LNKTEXT := ld
 SOURCES := $(shell find $(SRCDIR) -type f -name *.$(SRCTEXT))
-OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCTEXT)=_c.o))
+OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCTEXT)=_cpp.o))
 ASM_SOURCES := $(shell find $(SRCDIR) -type f -name *.$(ASMTEXT))
 ASM_OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(ASM_SOURCES:.$(ASMTEXT)=_asm.o))
 
 # Flags
-CFLAGS := -fno-stack-protector -m32 -c -I $(INCLUDEDIR) -o
+CFLAGS := -fno-stack-protector -m32 -c -g -I $(INCLUDEDIR) -o
 NFLAGS := -f elf32
 LFLAGS := -m elf_i386 -T
 
 first: $(TARGETDIR)/$(EXECUTABLE)
 
-$(BUILDDIR)/%_c.o: $(SRCDIR)/%.$(SRCTEXT)
+$(BUILDDIR)/%_cpp.o: $(SRCDIR)/%.$(SRCTEXT)
 	@mkdir -p $(BUILDDIR)
 	@echo "Compiling c parts of $(EXECUTABLE)..."
 	@echo -e "\tCompiling $<..."; $(CC) $(CFLAGS) $@ $<

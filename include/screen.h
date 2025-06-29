@@ -12,6 +12,7 @@ public:
 
     Screen();
 
+
     void printString(const char* str);
     void printSymbol(char c);
     void printNewLine();

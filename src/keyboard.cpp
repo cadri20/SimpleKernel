@@ -3,6 +3,7 @@
 extern "C" void write_port(unsigned short port, unsigned char data);
 extern "C" char read_port(unsigned short port);
 extern unsigned char keyboard_map[128];
+extern Screen *screen;
 
 void keyboard_init(void)
 {
@@ -14,8 +15,6 @@ extern "C" void keyboard_handler_main(void)
 {
 	unsigned char status;
 	char keycode;
-
-	Screen screen;
 
 	// Write EOI
 	write_port(0x20, 0x20);
@@ -29,19 +28,19 @@ extern "C" void keyboard_handler_main(void)
         }
 
 		if(keycode == ENTER_KEY_CODE) {
-			screen.printNewLine();
+			screen->printNewLine();
 			return;
 		}
         if(keycode == BACKSPACE_KEY_CODE) {
-            screen.printDeleteSymbol();
+            screen->printDeleteSymbol();
             return;
         }
         if(keycode == TAB_KEY_CODE) {
-            screen.printTab();
+            screen->printTab();
             return;
         }
 
         char input_str = keyboard_map[(unsigned char) keycode];
-        screen.printSymbol(input_str);
+        screen->printSymbol(input_str);
 	}
 }

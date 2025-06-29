@@ -2,7 +2,7 @@
 #include "screen.h"
 
 Screen::Screen() {
-    vidptr = reinterpret_cast<unsigned char*>(VIDEO_MEMORY);
+    vidptr = (unsigned char*)0xb8000;
     current_loc = 0;
 }
 
@@ -10,7 +10,7 @@ void Screen::printString(const char* str) {
     unsigned int i = 0;
     while (str[i] != '\0') {
         vidptr[current_loc++] = str[i++];
-        vidptr[current_loc++] = 0x02;  // Atributo de color
+        vidptr[current_loc++] = 0x02;  // Color attribute
     }
 }
 
